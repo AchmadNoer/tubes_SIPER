@@ -3,7 +3,7 @@
 @section('header')
     <img src="/BNPB.png" width="77" height="77" style="float: left;">
     <img src="/HINT.png" width="136.6" height="76.8" style="float: right;">
-    <h2 align="center" style="padding: 20px 0px 20px 0px;">Sistem Pendataan Relawan</h2>
+    <h2 align="center" style="padding: 20px 0px 20px 0px; font-family: Bahnschrift;">Sistem Pendataan Relawan</h2>
 @stop
 
 @section('content')

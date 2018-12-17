@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\HistoriB;
 use App\Provinsi;
 use App\Bencana;
+use App\Akun;
 use DB;
 
 class BencanaController extends Controller
@@ -63,7 +65,11 @@ class BencanaController extends Controller
     {
         $bencana=Bencana::find($id_bencana);
         $location=Provinsi::find($bencana->lokasi);
-        return view('bencana/show', compact('bencana','location'));
+        $historib = DB::table('bencana')
+        ->leftJoin('historib', 'bencana.id_bencana', '=', 'historib.id_bencana')
+        ->get();
+        $akun=Akun::all();
+        return view('bencana/show', compact('bencana','location', 'historib','akun'));
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('header')
 	<img src="/BNPB.png" width="77" height="77" style="float: left;">
 	<img src="/HINT.png" width="136.6" height="76.8" style="float: right;">
-	<h2 align="center" style="padding: 20px 0px 20px 0px;">Lihat Profil {{$akun->nama}}</h2>
+	<h2 align="center" style="padding: 20px 0px 20px 0px; font-family: Bahnschrift;">Lihat Profil {{$akun->nama}}</h2>
 @stop
 
 @section('content')
@@ -15,12 +15,20 @@
 	<a href="/akun/list" class="btn">List Relawan</a>|
 	@endif
 	@if(Session::get('name'))
-	<a href="/keluar" class="btn btn-danger" style="float: right;">Sign Out</a>
+	<a href="/akun/list/{{Session::get('id')}}" class="btn btn-warning" style="float: right;">{{Session::get('name')}}</a>
 	@else
 	<a href="/masuk" class="btn btn-success" style="float: right;">Akun</a>
 	@endif
 </div>
 	{!! Form::model($akun,['class'=>'form-horizontal']) !!}
+	@if($akun->id==0)
+		<div class="form-group">
+			<label for="nama" class="control-label col-md-2">Tipe Akun</label>
+			<div class="col-md-10">
+				<label class="form-control">{{$akun->email}}</label>
+			</div>
+		</div>
+	@else
 		<div class="form-group">
 			<label for="nama" class="control-label col-md-2">Nama Lengkap</label>
 			<div class="col-md-10">
@@ -86,61 +94,15 @@
 				@endif
 			</div>
 		</div>
+		@endif
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
 				<a href="javascript:history.back()" class="btn btn-primary">Kembali</a>
 				@if(Session::get('email')!="Admin")
 				<a href="/akun/list/{{$akun->id}}/edit" class="btn btn-danger">Edit</a>
 				@endif
-				<a class="btn btn-info" onclick="histori()">Histori</a>
+				<a href="/keluar" class="btn btn-danger">Keluar</a>
 			</div>
 		</div>
 	{!! Form::close() !!}
-	<div id="myDIV" class="form-group col-md-offset-2 col-md-10" style="display: none;">
-		<h2>Histori Training</h2>
-		<table class="table table-bordered table-responsive" style="margin-top: 10px">
-			<thead>
-				<tr>
-					<th>Tanggal</th>
-					<th>Lokasi</th>
-					<th>Jenis Bencana</th>
-				</tr>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</thead>
-		</table>
-		<br>
-		<h2>Histori Bencana</h2>
-		<table class="table table-bordered table-responsive" style="margin-top: 10px">
-			<thead>
-				<tr>
-					<th>Tanggal</th>
-					<th>Lokasi</th>
-					<th>Tema Training</th>
-				</tr>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</thead>
-		</table>
-	</div>
-	<script type="text/javascript">
-		function histori() {
-		  var x = document.getElementById("myDIV");
-		  if (x.style.display === "none") {
-		    x.style.display = "block";
-		  } else {
-		    x.style.display = "none";
-		  }
-		}
-	</script>
 @stop

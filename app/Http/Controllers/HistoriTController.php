@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Relawan;
+use DB;
+use App\Akun;
+use App\Training;
+use App\HistoriT;
 
-class RelawanController extends Controller
+class HistoriTController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,10 @@ class RelawanController extends Controller
      */
     public function index()
     {
-        //
+        $historit = DB::table('historit')
+        ->orderBy('id_training', 'ASC')
+        ->get();
+        return view('historit',compact('historit'));
     }
 
     /**
@@ -24,7 +30,12 @@ class RelawanController extends Controller
      */
     public function create()
     {
-        //
+        $akun = DB::table('akun')
+        ->where('akun.id', '!=',0)
+        ->where('akun.status', '=',1)
+        ->get();
+        $training=Training::all();
+        return view('training/presensi', compact('akun', 'training'));
     }
 
     /**
@@ -35,7 +46,14 @@ class RelawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['id_relawan'  =>'Required',
+                                   'id_training'  =>'Required']);
+
+        $data =  new HistoriT();
+        $data->id_relawan = $request->id_relawan;
+        $data->id_training = $request->id_training;
+        $data->save();
+        return redirect('/training/list');
     }
 
     /**
@@ -46,8 +64,7 @@ class RelawanController extends Controller
      */
     public function show($id)
     {
-        $relawan=Relawan::find($id);
-        return view('akun/profil',compact('relawan'));
+        //
     }
 
     /**

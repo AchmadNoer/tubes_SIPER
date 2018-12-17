@@ -9,7 +9,7 @@
 @section('content')
 <div style="background-color: lightblue; padding: 7px;">
 	<a href="/home" class="btn">Beranda</a>|
-	<a href="/bencana/list" class="btn active">Info Bencana</a>|
+	<a href="/bencana/list" class="btn">Info Bencana</a>|
 	<a href="/training/list" class="btn">Info Training</a>|
 	@if(Session::get('email')=="Admin")
 	<a href="/akun/list" class="btn">List Relawan</a>|
@@ -21,33 +21,19 @@
 	@endif
 </div>
 	@if(Session::get('email')=="Admin")
-	<a href="input" class="btn btn-primary" style="margin-top: 5px;">Input Bencana</a>
+	<a href="/histori/create" class="btn btn-primary" style="margin-top: 5px;">Tambah Presensi</a>
 	@endif
 	<table class="table table-bordered table-responsive" style="margin-top: 10px">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>Tanggal</th>
-				<th>Lokasi</th>
-				<th>Jenis Bencana</th>
-				<th colspan="3">Aksi</th>
+				<th>ID Training</th>
+				<th>ID Relawan</th>
 			</tr>
 			<tbody>
-				@foreach($bencana as $bencana)
+				@foreach($historit as $historit)
 				<tr>
-					<td>{{$bencana -> id_bencana}}</td>
-					<td>{{\Carbon\Carbon::parse($bencana->tgl_bencana)->format('d F Y')}}</td>
-					<td>{{$bencana -> nama_provinsi}}</td>
-					<td>{{$bencana -> jenis_bencana}}</td>
-					<td><a href="/bencana/list/{{$bencana->id_bencana}}" class="btn btn-danger">Lihat</a></td>
-					@if(Session::get('email')=="Admin")
-					<td><a href="/bencana/list/{{$bencana->id_bencana}}/edit" class="btn btn-danger">Edit</a></td>
-					<td>
-						{!! Form::open(['method'=>'delete', 'url'=>['bencana/list',$bencana->id_bencana]]) !!}
-						{!! Form::submit('Hapus', ['class'=>'btn btn-danger', 'onclick'=>'return confirm("Apakah Anda yakin?")']) !!}
-						{!! Form::close() !!}
-					@endif
-					</td>
+					<td><a href="/bencana/list/{{$historit -> id_training}}">{{$historit->id_training}}</a></td>
+					<td>{{$historit->id_relawan}}</td>
 				</tr>
 				@endforeach
 			</tbody>

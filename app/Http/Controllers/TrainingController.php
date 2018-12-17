@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\HistoriB;
 use App\Provinsi;
 use App\Training;
+use App\Akun;
 use DB;
 
 class TrainingController extends Controller
@@ -62,7 +64,11 @@ class TrainingController extends Controller
     {
         $training=Training::find($id_training);
         $location=Provinsi::find($training->lokasi);
-        return view('training/show', compact('training','location'));
+        $historit = DB::table('training')
+        ->leftJoin('historit', 'training.id_training', '=', 'historit.id_training')
+        ->get();
+        $akun=Akun::all();
+        return view('training/show', compact('training','location','akun','historit'));
     }
 
     /**

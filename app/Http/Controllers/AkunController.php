@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Akun;
+use App\HistoriB;
 use DB;
 
 class AkunController extends Controller
@@ -168,6 +169,17 @@ class AkunController extends Controller
     {
         Session::flush();
         return redirect('/home')->with('alert','Anda sudah logout');
+    }
+
+    public function beranda()
+    {
+        $training = DB::table('provinsi')
+        ->leftJoin('training', 'provinsi.id_provinsi', '=', 'training.lokasi')
+        ->where('training.keterangan', '!=','null')
+        ->orderBy('tgl_training','ASC')
+        ->limit(3)
+        ->get();
+        return view('/home',compact('training'));
     }
 
 }
