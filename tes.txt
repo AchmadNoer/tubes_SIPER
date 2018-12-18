@@ -2,7 +2,7 @@ APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=base64:p4ym91OQk3gkRJGPAhSGW02C14Nr5ZRsSp5nmxR24mc=
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://localhost/SIPER
 
 LOG_CHANNEL=stack
 
