@@ -26,7 +26,9 @@
 	<table class="table table-bordered table-responsive" style="margin-top: 10px">
 		<thead>
 			<tr>
-				<th>#</th>
+				@if(Session::get('email')=="Admin")
+				<th>Kode</th>
+				@endif
 				<th>Tanggal</th>
 				<th>Lokasi</th>
 				<th>Jenis Bencana</th>
@@ -35,7 +37,9 @@
 			<tbody>
 				@foreach($bencana as $bencana)
 				<tr>
+					@if(Session::get('email')=="Admin")
 					<td>{{$bencana -> id_bencana}}</td>
+					@endif
 					<td>{{\Carbon\Carbon::parse($bencana->tgl_bencana)->format('d F Y')}}</td>
 					<td>{{$bencana -> nama_provinsi}}</td>
 					<td>{{$bencana -> jenis_bencana}}</td>

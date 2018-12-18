@@ -16,6 +16,8 @@ class AkunController extends Controller
     {
         $akun = DB::table('akun')
         ->where('akun.id', '!=','0')
+        ->orderBy('akun.status','DESC')
+        ->orderBy('akun.nama','ASC')
         ->get();
         return view('akun/list',compact('akun'));
     }
@@ -180,6 +182,11 @@ class AkunController extends Controller
         ->limit(4)
         ->get();
         return view('/home',compact('training'));
+    }
+
+    public function berandaredirect()
+    {
+        return redirect('/home');
     }
 
 }

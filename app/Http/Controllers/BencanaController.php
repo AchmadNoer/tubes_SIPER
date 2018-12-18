@@ -21,6 +21,7 @@ class BencanaController extends Controller
         $bencana = DB::table('provinsi')
         ->leftJoin('bencana', 'provinsi.id_provinsi', '=', 'bencana.lokasi')
         ->where('bencana.jenis_bencana', '!=','null')
+        ->orderBy('bencana.tgl_bencana','DESC')
         ->get();
         return view('bencana/list',compact('bencana'));
     }

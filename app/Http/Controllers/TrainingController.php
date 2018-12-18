@@ -21,6 +21,7 @@ class TrainingController extends Controller
         $training = DB::table('provinsi')
         ->leftJoin('training', 'provinsi.id_provinsi', '=', 'training.lokasi')
         ->where('training.keterangan', '!=','null')
+        ->orderBy('training.tgl_training','DESC')
         ->get();
         return view('training/list',compact('training'));
     }

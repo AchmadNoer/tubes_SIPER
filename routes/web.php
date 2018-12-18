@@ -14,6 +14,7 @@
 Route::resource('bencana/list', 'BencanaController');
 Route::get('bencana/input', 'BencanaController@create');
 Route::get('/home', 'AkunController@beranda');
+Route::get('/', 'AkunController@berandaredirect');
 
 Route::resource('training/list', 'TrainingController');
 Route::get('training/input', 'TrainingController@create');
