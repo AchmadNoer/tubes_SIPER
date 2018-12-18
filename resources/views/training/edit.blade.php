@@ -26,7 +26,7 @@
 			<label for="lokasi" class="control-label col-md-2">Lokasi</label>
 			<div class="col-md-10">
 				<select name="lokasi" class="form-control">
-					<option value="" disabled selected>Pilih Provinsi</option>
+					<option value="{{$training->lokasi}}" selected>Default</option>
 					@foreach($location as $loc)
 					<option value="{{$loc->id_provinsi}}">{{$loc->nama_provinsi}}</option>
 					@endforeach

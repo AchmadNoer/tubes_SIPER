@@ -176,8 +176,8 @@ class AkunController extends Controller
         $training = DB::table('provinsi')
         ->leftJoin('training', 'provinsi.id_provinsi', '=', 'training.lokasi')
         ->where('training.keterangan', '!=','null')
-        ->orderBy('tgl_training','ASC')
-        ->limit(3)
+        ->orderBy('tgl_training','DESC')
+        ->limit(4)
         ->get();
         return view('/home',compact('training'));
     }

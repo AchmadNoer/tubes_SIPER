@@ -44,7 +44,7 @@
 		<div class="form-group">
 			<label for="deskripsi" class="control-label col-md-2">Deskripsi</label>
 			<div class="col-md-10">
-				<textarea name="deskripsi" class="form-control" rows="7" maxlength="750">{{$bencana->deskripsi}}</textarea>
+				<textarea name="deskripsi" class="form-control" rows="8" maxlength="1000">{{$bencana->deskripsi}}</textarea>
 				{!! $errors->has('deskripsi')?$errors->first('deskripsi'):'' !!}
 			</div>
 		</div>

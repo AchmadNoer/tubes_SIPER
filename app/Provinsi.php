@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provinsi extends Model
 {
     public function bencana(){
-    	return $this->hasOne(bencana::class,'provinsi.id_provinsi');
+    	return $this->belongsTo('App\Bencana');
     }
     public function training(){
     	return $this->hasOne(bencana::class,'provinsi.id_provinsi');
