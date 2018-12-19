@@ -15,7 +15,7 @@
 	<a href="/akun/list" class="btn">List Relawan</a>|
 	@endif
 	@if(Session::get('name'))
-	<a href="/akun/list/{{Session::get('id')}}" class="btn btn-warning" style="float: right;">{{Session::get('name')}}</a>
+	<a href="/keluar" class="btn btn-warning" style="float: right;">Keluar</a>
 	@else
 	<a href="/masuk" class="btn btn-success" style="float: right;">Akun</a>
 	@endif
@@ -101,7 +101,6 @@
 				@if(Session::get('email')!="Admin")
 				<a href="/akun/list/{{$akun->id}}/edit" class="btn btn-danger">Edit</a>
 				@endif
-				<a href="/keluar" class="btn btn-danger">Keluar</a>
 			</div>
 		</div>
 	{!! Form::close() !!}
